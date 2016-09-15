@@ -19,7 +19,7 @@ Now in your config/database.php you will need to add your connection details, it
 		'driver'   => 'odbc',
 		'dsn'      => 'odbc:DB_CONNECTION_STRING', //
 		'host'     => 'DB_HOST',
-		'database' => 'DB_NAME,
+		'database' => 'DB_NAME',
 		'username' => 'DB_USERNAME',
 		'password' => 'DB_PASSWORD',
 	],
@@ -51,6 +51,11 @@ This was some trial and error (with a hell of a lot of Googling!) but you could 
 Or a connection name
 ```
 'dsn'      => 'odbc:\\\\my-connection-name',
+```
+
+With Access 2013
+```
+'dsn'      => 'odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=C:\PathToYour.mdb;',
 ```
 
 Hopefully, this will help you!
