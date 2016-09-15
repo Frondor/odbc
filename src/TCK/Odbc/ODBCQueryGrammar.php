@@ -1,6 +1,7 @@
 <?php namespace TCK\Odbc;
 
 use Illuminate\Database\Query\Grammars\Grammar;
+use Illuminate\Database\Query\Builder;
 
 class ODBCQueryGrammar extends Grammar {
 
