@@ -50,7 +50,7 @@ class OdbcServiceProvider extends ServiceProvider {
 			$connector = new ODBCConnector();
 			$pdo       = $connector->connect( $config );
 
-			return new ODBCConnection( $pdo, $config['database'], $config['prefix'] );
+			return new ODBCConnection( $pdo, $config['database'], $config['prefix'], $config );
 
 		} );
 	}
