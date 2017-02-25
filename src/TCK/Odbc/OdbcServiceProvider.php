@@ -1,5 +1,6 @@
 <?php namespace TCK\Odbc;
 
+use Illuminate\Database\Connection;
 use Illuminate\Support\ServiceProvider;
 
 class OdbcServiceProvider extends ServiceProvider {
@@ -39,20 +40,15 @@ class OdbcServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$factory = $this->app['db'];
-		$factory->extend( 'odbc', function ( $config )
-		{
-			if ( ! isset( $config['prefix'] ) )
-			{
-				$config['prefix'] = '';
-			}
-
-			$connector = new ODBCConnector();
-			$pdo       = $connector->connect( $config );
-
-			return new ODBCConnection( $pdo, $config['database'], $config['prefix'], $config );
-
-		} );
+		Connection::resolverFor('odbc', function ($connection, $database, $prefix, $config) {
+		    if ( ! isset( $config['prefix'] ) )
+		    {
+			$config['prefix'] = '';
+		    }
+		    $connector = new ODBCConnector();
+		    $pdo       = $connector->connect( $config );
+		    return new ODBCConnection($pdo, $database, $config['prefix'], $config);
+		});
 	}
 
 }
