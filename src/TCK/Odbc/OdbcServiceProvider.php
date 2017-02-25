@@ -41,7 +41,7 @@ class OdbcServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 
-		if (version_compare($this->app::VERSION, '5.4', '>')) {
+		if (version_compare($this->app::VERSION, '5.4', '>=')) {
 			Connection::resolverFor('odbc', function ($connection, $database, $prefix, $config) {
 			    if ( ! isset( $config['prefix'] ) )
 			    {
