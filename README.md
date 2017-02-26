@@ -7,6 +7,13 @@ Add this to the require section in your composer.json file
 ```
 "tck/odbc": "dev-master"
 ```
+And this to the repositories array
+```
+{
+    "type": "vcs",
+    "url": "git@github.com:Frondor/odbc.git"
+}
+```
 
 In your config/app.php file add the Service Provider to the service providers array like so...
 ```
@@ -17,11 +24,18 @@ Now in your config/database.php you will need to add your connection details, it
 ```
 'odbc'   => [
 		'driver'   => 'odbc',
-		'dsn'      => 'odbc:DB_CONNECTION_STRING', //
+		'dsn'      => 'odbc:DB_CONNECTION_STRING', 
 		'host'     => 'DB_HOST',
 		'database' => 'DB_NAME',
 		'username' => 'DB_USERNAME',
 		'password' => 'DB_PASSWORD',
+		'charset' => 'utf8',
+		'collation' => '',
+           	'prefix' => '',
+            	'grammar' => [
+                	'query' => Illuminate\Database\Query\Grammars\SqlServerGrammar::class,
+                	'schema' => Illuminate\Database\Schema\Grammars\SqlServerGrammar::class,
+            	],
 	],
 ```
 
@@ -57,5 +71,3 @@ With Access 2013
 ```
 'dsn'      => 'odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=C:\PathToYour.mdb;',
 ```
-
-Hopefully, this will help you!
